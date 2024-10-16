@@ -26,6 +26,14 @@ Bit* TicTacToe::PieceForPlayer(const int playerNumber)
 
 void TicTacToe::setUpBoard()
 {
+    //std::cout<<"working"<<std::endl;
+    setNumberOfPlayers(2);
+    for(int i = 0; i < int(sizeof(_grid)/sizeof(_grid[0]));i++){
+        for(int j = 0; j < int(sizeof(_grid[j])/sizeof(_grid[j][0]));j++){
+           _grid[i][j].initHolder(ImVec2((float)(100*i+100),(float)(100*j+100)),"square.png",i,j);
+        }
+    }
+    startGame();
 }
 
 
@@ -221,7 +229,14 @@ int TicTacToeAI::AICheckForWinner()
 //
 bool TicTacToeAI::isBoardFull() const
 {
-    return false;    
+    for(int i = 0; i < int(sizeof(_grid)/sizeof(_grid[0]));i++){
+        for(int j = 0; j < int(sizeof(_grid[j])/sizeof(_grid[j][0]));j++){
+            if(_grid[i][j]){
+                return false;
+            }
+        }
+    }
+    return true;    
 }
 
 //
